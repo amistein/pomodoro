@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <a href="#" class="playSound">Play</a>
+  <div id="outer">
+      <h1 class="text-center">10</h1>  
+      <button type="button" id="go">GO!</button>  
+  </div>
+</body>
+</html>
+
+<script>
+ 
+    $(document).ready(function() {
+        var obj = document.createElement("audio");
+        obj.src="sound1.mp3";
+        obj.volume=0.10;
+        obj.autoPlay=false;
+        obj.preLoad=true;
+
+        var obj1 = document.createElement("audio");
+        obj1.src="beep-06.mp3";
+        obj1.volume=0.10;
+        obj1.autoPlay=false;
+        obj1.preLoad=true;       
+ 
+        $(".playSound").click(function() {
+            obj.play();
+        });
+
+        var running = false;
+        $("#go").click(function() {
+          if (!running) {
+            running = true;
+            var i = 9;
+            var timer;
+            $("h1").html("9");
+            obj1.play();
+            timer = setInterval(function() {
+              i--;
+              if (i === -1) {
+                clearInterval(timer);
+                obj.play();
+                setTimeout(function() {
+                  running = false;
+                  $("h1").html("10");
+                },
+                4000);
+                return;
+              }
+              $("h1").html(i);
+              obj1.play();
+            },
+            1000)
+          }
+        });
+    });
+
+</script>

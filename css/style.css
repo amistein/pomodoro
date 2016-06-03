@@ -1,0 +1,22 @@
+body {
+	background-color: green;
+}
+
+#outer {
+	border-radius: 100%;
+	background-color: white;
+	height: 200px;
+	width: 200px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+button {
+	display: block;
+	margin: 0 auto;
+}
+
+h1 {
+	padding-top: 25px;
+}
+
