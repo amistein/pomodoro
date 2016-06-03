@@ -4,13 +4,13 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <title></title>
+  <title>Pomodoro Timer</title>
 </head>
 <body>
   <a href="#" class="playSound">Play</a>
   <div id="outer">
       <h1 class="text-center">10</h1>  
-      <button type="button" id="go">GO!</button>  
+      <button type="button" id="go"></button>  
   </div>
 </body>
 </html>
@@ -35,31 +35,45 @@
         });
 
         var running = false;
+        var paused = true;
         $("#go").click(function() {
+          paused = !paused;
           if (!running) {
             running = true;
             var i = 9;
+            var mins = 2;
+            var secs = 60;
             var timer;
-            $("h1").html("9");
+            $("h1").html(mins - 1 + ":" + (secs  - 1));
             obj1.play();
-            timer = setInterval(function() {
-              i--;
-              if (i === -1) {
-                clearInterval(timer);
-                obj.play();
-                setTimeout(function() {
-                  running = false;
-                  $("h1").html("10");
-                },
-                4000);
-                return;
-              }
-              $("h1").html(i);
-              obj1.play();
-            },
-            1000)
-          }
-        });
+            timer = setInterval(timerS, 1000); 
+        }
     });
+
+    function timerS() {
+              if (!paused) {
+                if (secs == 0) {
+                  mins -= mins;
+                  secs = 60;
+                }
+                secs--;
+                if (mins === 0) {
+                  clearInterval(timer);
+                  obj.play();
+                  setTimeout(function() {
+                    running = false;
+                    paused = true;
+                    $("h1").html("10");
+                  },
+                  4000);
+                  return;
+                }
+                $("h1").html(mins - 1 + ":" + (secs -1));
+                obj1.play();
+              }
+              
+            }
+          });
+              
 
 </script>
