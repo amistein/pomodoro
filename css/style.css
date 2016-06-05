@@ -10,6 +10,11 @@ body {
 	margin: 0 auto;
 	margin-top: 50px;
 }
+#outer {
+	background: linear-gradient(orange 50%, purple 50%);
+}
+
+
 
 button {
 	width: 50px;
