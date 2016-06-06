@@ -4,20 +4,52 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="pomodoro.js"></script>
   <title>Pomodoro Timer</title>
 </head>
 <body>
-  <a href="#" class="playSound">Play</a>
-  <div id="outer">
-      <h1 id="time" class="text-center">25</h1>  
-      <button type="button" id="go"></button>  
+	<div class="container">	
+		<div id="top" class="row">
+			<div class="col-md-5 text-center">
+				<div class="header"><h1>WORK</h1></div>
+				<div id="work-inner">
+					<h2>
+						<button><span class="arrow-down">&#8595; </span></button>
+						<span class="work-minute"></span>
+						<button><span class="arrow-up"> &#8593;</span></button>
+					</h2>
+				</div>
+				<div><h3>Minutes</h3></div>
+			</div>
+			<div class="col-md-2">
+			<div id="mid-header">
+				<button type="button" id="go">START</button>
+			</div> 
+			</div>
+			<div class="col-md-5 text-center">
+				<div class="header"><h1>BREAK</h1></div>
+				<div id="rest-inner">
+					<h2>
+						<button><span class="arrow-down">&#8595; </span></button>
+						<span class="rest-minute"></span>
+						<button><span class="arrow-up"> &#8593;</span></button>
+					</h2>
+				</div>
+				<div><h3>Minutes</h3></div>
+			</div>
+		</div>
+	</div>
+  	<div id="outer">
+    	  <h1 id="time" class="text-center">25</h1>  
+  	</div>
   </div>
 </body>
 </html>
 
 <script type="text/javascript">
 var running = false;
-	$("button").click(function() {
+	$("#go").click(function() {
+		$("body").css("background-color", "green");
 		var minutes = parseInt($("#time").html());
 		if (!running) timer(15);
 	});
