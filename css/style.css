@@ -19,6 +19,7 @@ body {
 }
 
 #go {
+	color: white;
 	margin-top: 200px;
 	height: 100px;
 	width: 100px;
@@ -41,3 +42,14 @@ h1 {
 .arrow {
 	font-weight: bolder;
 }
+
+#timer-box {
+	background-color: white;
+	margin-top: 75px;
+	border-radius: 10px;
+}
+
+#timer {
+	font-size: 50px;
+}
+
