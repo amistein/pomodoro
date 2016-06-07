@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var work = 25;
 	var rest = 5;
 	var running = false;
-	var rest = false;
+	var restTimer = 0;
 	var obj1 = document.createElement("audio");
   obj1.src="sound1.mp3";      
  	obj1.volume = 0.5;
@@ -40,32 +40,40 @@ $(document).ready(function() {
 	$("#go").click(function() {
 		$("body").css("background-color", "green");
 		var wMinutes = parseInt($(".work-minute").html());
-		var rMinutes = parseInt($(".rest-minute").html());
-		timer(rMinutes * 60);
-		while (true) {
-			if (rest) break;
-		}
-		$("body").css("background-color", "red");
 		timer(wMinutes * 60);
-
 	});
 
 	function timer(seconds) {
 		running = true;
 		var sec, min;
+		var rMinutes = parseInt($(".rest-minute").html());
 		var clock = setInterval(function() {
 			if (running) {
 				seconds--;
 				sec = seconds % 60;
 				sec = sec < 10 ? "0" + sec : sec;
 				min = Math.floor(seconds / 60);
+				console.log(min);
 				$("#timer").html(min + ":" + sec);
+				$(".arrow-work").click(function() {
+					running = false;
+					clearInterval(clock);
+					$("#timer").html(work + ":" + "00");
+				});
 
 				if (seconds == 0) {
 					obj1.play();
 					clearInterval(clock);
 					running = false;
-					rest = true;
+					if (restTimer > 0) {
+						$("body").css("background-color", "yellow");
+						$("#timer").html(work + ":" + "00");
+					}
+					else {
+						$("body").css("background-color", "red");
+						timer(rMinutes * 60);
+						restTimer++;
+					}
 				}
 			}
 		}, 1000);
