@@ -40,7 +40,9 @@ $(document).ready(function() {
 	$("#go").click(function() {
 		$("body").css("background-color", "green");
 		var wMinutes = parseInt($(".work-minute").html());
-		timer(wMinutes * 60);
+		if (!running) {
+			timer(wMinutes * 60);
+		}
 	});
 
 	function timer(seconds) {
